@@ -26,6 +26,14 @@ public class Main {
     // Get highest from the collection
     Integer getHighest(List<Integer> collection) {
         return collection.stream().max(Integer::compareTo).get();
+        // return collection.stream().mapToInt(v -> v).max().getAsInt();
+    }
+
+    // Sum all elements of a collection
+    Integer getSum(List<Integer> collection) {
+        // return collection.stream().mapToInt(v -> v).sum();
+        // return collection.stream().reduce(0, (a, b) -> a + b).intValue();
+        return collection.stream().reduce(0, Integer::sum).intValue();
     }
 
 }

@@ -37,10 +37,18 @@ public class Test {
         System.out.println(result.equals(expected));
     }
 
+    static public void getSumShouldReturnSum() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        Integer expected = 1 + 2 + 3 + 4 + 5;
+        Integer result = new Main().getSum(numbers);
+        System.out.println(result.equals(expected));
+    }
+
     public static void main(String[] args) {
         transformShouldConvertCollectionElementsToUpperCase();
         transformShouldFilterCollection();
         transformShouldFlattenCollection();
         getHighestShouldReturnHighest();
+        getSumShouldReturnSum();
     }
 }
