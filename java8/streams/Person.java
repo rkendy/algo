@@ -16,4 +16,10 @@ public class Person {
     public Integer getAge() {
         return age;
     }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + " Age: " + age;
+    }
+
 }

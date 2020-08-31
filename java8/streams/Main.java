@@ -1,20 +1,21 @@
 package java8.streams;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 // https://technologyconversations.com/2014/11/04/java-8-streams-micro-katas/
 public class Main {
 
     // Convert elements of a collection to upper case
-    public List<String> toUpperCase(List<String> input) {
+    List<String> toUpperCase(List<String> input) {
         return input.stream().map(e -> e.toUpperCase()).collect(Collectors.toList());
         // return input.stream().map(String::toUpperCase).collect(Collectors.toList());
     }
 
     // Filter collection so that only elements with less than 4 characters are
     // returned.
-    public List<String> filterElements(List<String> collection) {
+    List<String> filterElements(List<String> collection) {
         return collection.stream().filter(e -> e.length() < 4).collect(Collectors.toList());
     }
 
@@ -54,6 +55,21 @@ public class Main {
     // Get sum age
     Integer getSumAge(List<Person> collection) {
         return collection.stream().mapToInt(Person::getAge).sum();
+    }
+
+    // Partition adults and kids
+    Map<Boolean, List<Person>> partitionAdults(List<Person> collection) {
+        return collection.stream().collect(Collectors.partitioningBy(p -> p.getAge() >= 18));
+    }
+
+    // Group people by first letter
+    Map<Character, List<Person>> partitionByFirstLetter(List<Person> collection) {
+        return collection.stream().collect(Collectors.groupingBy(e -> e.getName().charAt(0)));
+    }
+
+    // Return people names separated by comma
+    String getNamesSeparatedByComma(List<Person> collection) {
+        return collection.stream().map(Person::getName).collect(Collectors.joining(", "));
     }
 
 }
