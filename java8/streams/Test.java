@@ -44,15 +44,33 @@ public class Test {
         System.out.println(result.equals(expected));
     }
 
-    static public void getNameUnderAgeShouldReturnNamesOfAllKids() {
+    static private List<Person> createList() {
         Person sara = new Person("Sara", 4);
         Person viktor = new Person("Viktor", 40);
         Person eva = new Person("Eva", 42);
         Person anna = new Person("Anna", 5);
-        List<Person> collection = Arrays.asList(sara, eva, viktor, anna);
+        return Arrays.asList(sara, eva, viktor, anna);
+    }
+
+    static public void getNameUnderAgeShouldReturnNamesOfAllKids() {
+        List<Person> collection = createList();
         List<String> expected = Arrays.asList("Sara", "Anna");
         List<String> result = new Main().getNamesUnderAge(collection);
         System.out.println(result.equals(expected));
+    }
+
+    static public void getAverageShouldReturnAverage() {
+        List<Person> collection = createList();
+        Double result = new Main().getAverageAge(collection);
+        Double expected = 22.75;
+        System.out.println(expected.equals(result));
+    }
+
+    static public void getSumAge() {
+        List<Person> collection = createList();
+        Integer result = new Main().getSumAge(collection);
+        Integer expected = 91;
+        System.out.println(expected.equals(result));
     }
 
     public static void main(String[] args) {
@@ -62,5 +80,7 @@ public class Test {
         getHighestShouldReturnHighest();
         getSumShouldReturnSum();
         getNameUnderAgeShouldReturnNamesOfAllKids();
+        getAverageShouldReturnAverage();
+        getSumAge();
     }
 }

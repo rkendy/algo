@@ -45,4 +45,15 @@ public class Main {
         return collection.stream().filter(e -> e.getAge() < 18).map(Person::getName).collect(Collectors.toList());
     }
 
+    // Get average age
+    Double getAverageAge(List<Person> collection) {
+        // return collection.stream().mapToInt(e -> e.getAge()).average().getAsDouble();
+        return collection.stream().mapToInt(Person::getAge).average().getAsDouble();
+    }
+
+    // Get sum age
+    Integer getSumAge(List<Person> collection) {
+        return collection.stream().mapToInt(Person::getAge).sum();
+    }
+
 }
