@@ -32,8 +32,17 @@ public class Main {
     // Sum all elements of a collection
     Integer getSum(List<Integer> collection) {
         // return collection.stream().mapToInt(v -> v).sum();
-        // return collection.stream().reduce(0, (a, b) -> a + b).intValue();
+        // return collection.stream().reduce(0, (total, element) -> //
+        // total + element).intValue();
         return collection.stream().reduce(0, Integer::sum).intValue();
+    }
+
+    // Get names of all under age of 18
+    List<String> getNamesUnderAge(List<Person> collection) {
+        // return collection.stream() //
+        // .filter(e -> e.getAge() < 18) //
+        // .map(e -> e.getName()).collect(Collectors.toList());
+        return collection.stream().filter(e -> e.getAge() < 18).map(Person::getName).collect(Collectors.toList());
     }
 
 }

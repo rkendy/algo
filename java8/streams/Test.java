@@ -44,11 +44,23 @@ public class Test {
         System.out.println(result.equals(expected));
     }
 
+    static public void getNameUnderAgeShouldReturnNamesOfAllKids() {
+        Person sara = new Person("Sara", 4);
+        Person viktor = new Person("Viktor", 40);
+        Person eva = new Person("Eva", 42);
+        Person anna = new Person("Anna", 5);
+        List<Person> collection = Arrays.asList(sara, eva, viktor, anna);
+        List<String> expected = Arrays.asList("Sara", "Anna");
+        List<String> result = new Main().getNamesUnderAge(collection);
+        System.out.println(result.equals(expected));
+    }
+
     public static void main(String[] args) {
         transformShouldConvertCollectionElementsToUpperCase();
         transformShouldFilterCollection();
         transformShouldFlattenCollection();
         getHighestShouldReturnHighest();
         getSumShouldReturnSum();
+        getNameUnderAgeShouldReturnNamesOfAllKids();
     }
 }
