@@ -3,6 +3,7 @@ package java8.streams;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// https://technologyconversations.com/2014/11/04/java-8-streams-micro-katas/
 public class Main {
 
     // Convert elements of a collection to upper case
@@ -20,6 +21,11 @@ public class Main {
     // Flatten multidimensional collection
     List<String> flatMap(List<List<String>> input) {
         return input.stream().flatMap(lst -> lst.stream()).collect(Collectors.toList());
+    }
+
+    // Get highest from the collection
+    Integer getHighest(List<Integer> collection) {
+        return collection.stream().max(Integer::compareTo).get();
     }
 
 }

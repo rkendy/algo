@@ -30,10 +30,17 @@ public class Test {
         System.out.println(result.equals(expected));
     }
 
+    static public void getHighestShouldReturnHighest() {
+        List<Integer> collection = Arrays.asList(5, 2, 5, 1, 9, 101, 2, 5, 6);
+        Integer expected = 101;
+        Integer result = new Main().getHighest(collection);
+        System.out.println(result.equals(expected));
+    }
+
     public static void main(String[] args) {
         transformShouldConvertCollectionElementsToUpperCase();
         transformShouldFilterCollection();
         transformShouldFlattenCollection();
-
+        getHighestShouldReturnHighest();
     }
 }
