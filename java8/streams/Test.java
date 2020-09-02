@@ -95,6 +95,12 @@ public class Test {
         System.out.println(result);
     }
 
+    static public void getOldestPerson() {
+        List<Person> collection = createList();
+        Person result = new Main().getOldestPerson(collection);
+        System.out.println(result.getAge() == 42);
+    }
+
     public static void main(String[] args) {
         transformShouldConvertCollectionElementsToUpperCase();
         transformShouldFilterCollection();
@@ -107,5 +113,6 @@ public class Test {
         partitionAdultsShouldSeparateKidsFromAdults();
         partitionByFirstLetterShouldSeparateByFirstLetterName();
         getNamesSeparatedByCommaShouldSeparate();
+        getOldestPerson();
     }
 }

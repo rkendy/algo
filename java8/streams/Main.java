@@ -1,5 +1,6 @@
 package java8.streams;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -70,6 +71,11 @@ public class Main {
     // Return people names separated by comma
     String getNamesSeparatedByComma(List<Person> collection) {
         return collection.stream().map(Person::getName).collect(Collectors.joining(", "));
+    }
+
+    // Get oldest person
+    Person getOldestPerson(List<Person> collection) {
+        return collection.stream().max(Comparator.comparing(Person::getAge)).get();
     }
 
 }
