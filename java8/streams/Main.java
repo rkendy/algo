@@ -1,9 +1,12 @@
 package java8.streams;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 // https://technologyconversations.com/2014/11/04/java-8-streams-micro-katas/
 public class Main {
@@ -76,6 +79,12 @@ public class Main {
     // Get oldest person
     Person getOldestPerson(List<Person> collection) {
         return collection.stream().max(Comparator.comparing(Person::getAge)).get();
+    }
+
+    void examplesCreatingStreams() {
+        Stream.of(new Person("nome", 10), new Person("nome2", 20)).findFirst().ifPresent(System.out::println);
+        IntStream.range(1, 4).forEach(System.out::println);
+        Arrays.stream(new int[] { 1, 2, 3, 4, 5 }).forEach(System.out::println);
     }
 
 }
