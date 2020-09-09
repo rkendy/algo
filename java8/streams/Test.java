@@ -53,29 +53,27 @@ public class Test {
         return Arrays.asList(sara, eva, viktor, anna);
     }
 
+    static private List<Person> collection = createList();
+
     static public void getNameUnderAgeShouldReturnNamesOfAllKids() {
-        List<Person> collection = createList();
         List<String> expected = Arrays.asList("Sara", "Elanna");
         List<String> result = new Main().getNamesUnderAge(collection);
         System.out.println("getNameUnderAgeShouldReturnNamesOfAllKids: " + result.equals(expected));
     }
 
     static public void getAverageShouldReturnAverage() {
-        List<Person> collection = createList();
         Double result = new Main().getAverageAge(collection);
         Double expected = 22.75;
         System.out.println("getAverageShouldReturnAverage: " + expected.equals(result));
     }
 
     static public void getSumAge() {
-        List<Person> collection = createList();
         Integer result = new Main().getSumAge(collection);
         Integer expected = 91;
         System.out.println("getSumAge: " + expected.equals(result));
     }
 
     static public void partitionAdultsShouldSeparateKidsFromAdults() {
-        List<Person> collection = createList();
         Map<Boolean, List<Person>> result = new Main().partitionAdults(collection);
         System.out.print("partitionAdultsShouldSeparateKidsFromAdults: " + (result.get(true).size() == 2));
         System.out.println("\t" + Arrays.toString(result.get(true).toArray()));
@@ -84,21 +82,34 @@ public class Test {
     }
 
     static public void partitionByFirstLetterShouldSeparateByFirstLetterName() {
-        List<Person> collection = createList();
         Map<Character, List<Person>> result = new Main().partitionByFirstLetter(collection);
         System.out.println("partitionByFirstLetterShouldSeparateByFirstLetterName: " + result);
     }
 
     static public void getNamesSeparatedByCommaShouldSeparate() {
-        List<Person> collection = createList();
         String result = new Main().getNamesSeparatedByComma(collection);
         System.out.println(result);
     }
 
     static public void getOldestPerson() {
-        List<Person> collection = createList();
         Person result = new Main().getOldestPerson(collection);
         System.out.println(result.getAge() == 42);
+    }
+
+    static public void getExistWithAge() {
+        Boolean result = new Main().getExistWithAge(collection);
+        System.out.println(result == true);
+    }
+
+    static public void getAnyWithAge() {
+        Person result = new Main().getAnyWithAge(collection);
+        System.out.println("Viktor".equals(result.getName()));
+    }
+
+    static public void generateRandomIntegers() {
+        List<Integer> result = new Main().generateRandomIntegers();
+        result.forEach(i -> System.out.print(i + " "));
+        System.out.println(result.size() == 10);
     }
 
     public static void main(String[] args) {
@@ -114,5 +125,8 @@ public class Test {
         partitionByFirstLetterShouldSeparateByFirstLetterName();
         getNamesSeparatedByCommaShouldSeparate();
         getOldestPerson();
+        getExistWithAge();
+        getAnyWithAge();
+        generateRandomIntegers();
     }
 }

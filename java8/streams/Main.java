@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -81,6 +82,22 @@ public class Main {
         return collection.stream().max(Comparator.comparing(Person::getAge)).get();
     }
 
+    // Return true is there is a person with age 40.
+    Boolean getExistWithAge(List<Person> collection) {
+        return collection.stream().filter(e -> e.getAge() == 40).findFirst().isPresent();
+    }
+
+    // Return any person with age 40
+    Person getAnyWithAge(List<Person> collection) {
+        return collection.stream().filter(e -> e.getAge() == 40).findAny().orElse(null);
+    }
+
+    // Return list of 10 random integers from 0..99
+    List<Integer> generateRandomIntegers() {
+        return Stream.generate(() -> new Random().nextInt(100)).limit(10).collect(Collectors.toList());
+    }
+
+    //
     void examplesCreatingStreams() {
         Stream.of(new Person("nome", 10), new Person("nome2", 20)).findFirst().ifPresent(System.out::println);
         IntStream.range(1, 4).forEach(System.out::println);
