@@ -84,7 +84,9 @@ public class Main {
 
     // Return true is there is a person with age 40.
     Boolean getExistWithAge(List<Person> collection) {
-        return collection.stream().filter(e -> e.getAge() == 40).findFirst().isPresent();
+        // return collection.stream().filter(e -> e.getAge() ==
+        // 40).findFirst().isPresent();
+        return collection.stream().anyMatch(e -> e.getAge() == 40);
     }
 
     // Return any person with age 40
