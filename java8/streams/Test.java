@@ -106,12 +106,18 @@ public class Test {
         System.out.println("Viktor".equals(result.getName()));
     }
 
+    static public void getMapWithNameAndAge() {
+        Map<String,Integer> result = new Main().getMapWithNameAndAge(collection);
+        Boolean ok = result.get("Eva").equals(42);
+        System.out.println("getMapWithNameAndAge: " + result + " " + ok);
+    }
+
     static public void generateRandomIntegers() {
         List<Integer> result = new Main().generateRandomIntegers();
         result.forEach(i -> System.out.print(i + " "));
         System.out.println(result.size() == 10);
     }
-
+    
     public static void main(String[] args) {
         transformShouldConvertCollectionElementsToUpperCase();
         transformShouldFilterCollection();
@@ -127,6 +133,7 @@ public class Test {
         getOldestPerson();
         getExistWithAge();
         getAnyWithAge();
+        getMapWithNameAndAge();
         generateRandomIntegers();
     }
 }

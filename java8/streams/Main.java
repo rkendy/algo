@@ -99,6 +99,10 @@ public class Main {
         return Stream.generate(() -> new Random().nextInt(100)).limit(10).collect(Collectors.toList());
     }
 
+    Map<String,Integer> getMapWithNameAndAge(List<Person> collection) {
+        return collection.stream().collect(Collectors.toMap(Person::getName, Person::getAge));
+    }
+
     //
     void examplesCreatingStreams() {
         Stream.of(new Person("nome", 10), new Person("nome2", 20)).findFirst().ifPresent(System.out::println);
