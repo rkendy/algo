@@ -38,8 +38,19 @@ public class OddOccurrencesInArray {
         return set.iterator().next();
     }
 
+    /**
+     * Solution using XOR. No need for extra space.
+     */
+    public int solution2(int[] A) {
+        int result = A[0];
+        for (int i = 1; i < A.length; i++) {
+            result = result ^ A[i];
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
-        System.out.println(7 == new OddOccurrencesInArray().solution(new int[] { 9, 3, 9, 3, 9, 7, 9 }));
-        System.out.println(9 == new OddOccurrencesInArray().solution(new int[] { 9 }));
+        System.out.println(7 == new OddOccurrencesInArray().solution2(new int[] { 9, 3, 9, 3, 9, 7, 9 }));
+        System.out.println(9 == new OddOccurrencesInArray().solution2(new int[] { 9 }));
     }
 }
