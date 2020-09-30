@@ -60,6 +60,36 @@ public class MinAvgTwoSlice {
         return start;
     }
 
+    /**
+     * No use of type double.
+     */
+    public int solution2(int[] A) {
+        int indexOfTwo = 0;
+        long minSumOfTwo = A[0] + A[1];
+        for (int i = 1; i < A.length - 1; i++) {
+            if (A[i] + A[i + 1] < minSumOfTwo) {
+                minSumOfTwo = A[i] + A[i + 1];
+                indexOfTwo = i;
+            }
+        }
+
+        if (A.length > 2) {
+            long minSumOfThree = A[0] + A[1] + A[2];
+            int indexOfThree = 0;
+            for (int i = 1; i < A.length - 2; i++) {
+                if (A[i] + A[i + 1] + A[i + 2] < minSumOfThree) {
+                    minSumOfThree = A[i] + A[i + 1] + A[i + 2];
+                    indexOfThree = i;
+                }
+            }
+            if (2 * minSumOfThree < 3 * minSumOfTwo) {
+                return indexOfThree;
+            }
+        }
+
+        return indexOfTwo;
+    }
+
     public static void main(String[] args) {
         System.out.println(1 == new MinAvgTwoSlice().solution(new int[] { 4, 2, 2, 5, 1, 5, 8 }));
     }
