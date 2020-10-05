@@ -38,6 +38,17 @@ public class Distinct {
             }
         }
         return count;
+    }
+
+    /**
+     * O(n) but uses extra data structure.
+     */
+    public int solution2(int[] A) {
+        Set<Integer> set = new HashSet<>();
+        for (int e : A) {
+            set.add(e);
+        }
+        return set.size();
 
     }
 
