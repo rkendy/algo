@@ -32,12 +32,50 @@ import java.util.Arrays;
  * integer within the range [−2,147,483,648..2,147,483,647].
  */
 public class Triangle {
+
+    /**
+     * Proof:
+     * 
+     * 1) Ignore elements that are <= 0, since there is no possible solution.
+     *
+     * Proof of 1)
+     * 
+     * Assume A + B > C, where C <= 0. Then:
+     * 
+     * A + C > B => Then: A > B.
+     * 
+     * B + C > A => Then: B > A.
+     * 
+     * Contradiction.
+     * 
+     * Thus, we should ignore negative numbers.
+     * 
+     * 
+     * 2) Assume A<=B<=C, and A > 0 (thus B and C > 0). If A + B > C, then:
+     * 
+     * B + C > A and A + C > B.
+     * 
+     * Proof of 2)
+     * 
+     * Assume by contradiction that B + C <= A. Then A > B and A > C, which is
+     * false.
+     * 
+     * Assume by contradiction that A + C <= B. Then B > C, which is false.
+     * 
+     * Thus, it is enough to check if A + B > C, considering 0 < A <= B <= C.
+     * 
+     * 
+     */
     public int solution(int[] A) {
+        // Ensure that A <= B <= C:
         Arrays.sort(A);
+
+        // 1) Ignore elements <= 0:
         int index = 0;
         while (index < A.length && A[index] <= 0)
             index++;
 
+        // 2) Check if A + B < C:
         while (index < A.length - 2) {
             if ((long) A[index] + A[index + 1] > A[index + 2])
                 return 1;
