@@ -27,6 +27,11 @@ import java.util.Stack;
  */
 public class Brackets {
     public int solution(String S) {
+        if (S == null)
+            return 1;
+        if (S.length() % 2 == 1)
+            return 0;
+
         Stack<Character> stack = new Stack<>();
         for (char c : S.toCharArray()) {
             if (c == '(' || c == '{' || c == '[') {
@@ -55,5 +60,6 @@ public class Brackets {
     public static void main(String[] args) {
         System.out.println(1 == new Brackets().solution("{[()()]}"));
         System.out.println(0 == new Brackets().solution("([)()]"));
+        System.out.println(0 == new Brackets().solution("([()]"));
     }
 }
