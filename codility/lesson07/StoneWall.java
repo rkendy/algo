@@ -1,5 +1,7 @@
 package codility.lesson07;
 
+import java.util.Stack;
+
 /**
  * You are going to build a stone wall. The wall should be straight and N meters
  * long, and its thickness should be constant; however, it should have different
@@ -34,6 +36,27 @@ package codility.lesson07;
  */
 public class StoneWall {
     public int solution(int[] H) {
+        Stack<Integer> stack = new Stack<>();
+        int count = 0;
+        for (int element : H) {
+            if (stack.empty()) {
+                stack.push(element);
+            } else {
+                if (element > stack.peek()) {
+                    stack.push(element);
+                } else if (element < stack.peek()) {
+                    while (!stack.empty() && stack.peek() > element) {
+                        stack.pop();
+                        count += 1;
+                    }
+                    if (stack.empty() || element > stack.peek()) {
+                        stack.push(element);
+                    }
+                }
+            }
+        }
+        count += stack.size();
+        return count;
     }
 
     public static void main(String[] args) {
