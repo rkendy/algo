@@ -1,5 +1,8 @@
 package codility.lesson08;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * An array A consisting of N integers is given. The dominator of array A is the
  * value that occurs in more than half of the elements of A.
@@ -30,10 +33,20 @@ package codility.lesson08;
  */
 public class Dominator {
     public int solution(int[] A) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int min = (A.length / 2) + 1;
 
+        int count;
+        for (int i = 0; i < A.length; i++) {
+            count = map.getOrDefault(A[i], 0) + 1;
+            if (count >= min)
+                return i;
+            map.put(A[i], count);
+        }
+        return -1;
     }
 
     public static void main(String[] args) {
-        System.out.println(0 == new Dominator().solution(new int[] { 3, 4, 3, 2, 3, -1, 3, 3 }));
+        System.out.println(6 == new Dominator().solution(new int[] { 3, 4, 3, 2, 3, -1, 3, 3 }));
     }
 }
