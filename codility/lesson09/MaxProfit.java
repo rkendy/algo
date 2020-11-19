@@ -39,10 +39,21 @@ package codility.lesson09;
 public class MaxProfit {
 
     public int solution(int[] A) {
+        if (A == null || A.length == 0)
+            return 0;
 
+        int max = 0;
+        int min = A[0];
+        for (int i = 1; i < A.length; i++) {
+            max = Math.max(max, A[i] - min);
+            min = Math.min(min, A[i]);
+        }
+
+        return max;
     }
 
     public static void main(String[] args) {
-
+        System.out.println(0 == new MaxProfit().solution(new int[] {}));
+        System.out.println(356 == new MaxProfit().solution(new int[] { 23171, 21011, 21123, 21366, 21013, 21367 }));
     }
 }
