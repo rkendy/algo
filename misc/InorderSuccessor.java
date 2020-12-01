@@ -37,6 +37,9 @@ public class InorderSuccessor {
             return currentNode;
         }
 
+        /**
+         * Simplest solution: using value.
+         */
         Node getClosestParent(Node node, Node inputNode) {
             Node currentNode = node;
             while (currentNode != null) {
@@ -47,22 +50,23 @@ public class InorderSuccessor {
             return null;
         }
 
-        Node findInOrderSuccessor(Node inputNode) {
-            Node currentNode = root;
-            while (currentNode != null) {
-                if (currentNode.key == inputNode.key) {
-                    if (currentNode.right != null) {
-                        return getLeftMost(currentNode.right);
-                    } else {
-                        return getClosestParent(currentNode.parent, inputNode);
-                    }
-                } else if (inputNode.key < currentNode.key) {
-                    currentNode = currentNode.left;
-                } else {
-                    currentNode = currentNode.right;
-                }
+        /**
+         * Using parent and the fact that if coming from left, parent is higher.
+         */
+        Node getClosestParent2(Node node, Node inputNode) {
+            while (node != null && node.right == inputNode) {
+                inputNode = node;
+                node = node.parent;
             }
-            return null;
+            return node;
+        }
+
+        Node findInOrderSuccessor(Node inputNode) {
+            if (inputNode == null)
+                return null;
+
+            return inputNode.right != null ? getLeftMost(inputNode.right)
+                    : getClosestParent2(inputNode.parent, inputNode);
         }
 
         void insert(int key) {
