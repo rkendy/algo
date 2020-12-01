@@ -61,6 +61,33 @@ public class InorderSuccessor {
             return node;
         }
 
+        /**
+         * Recursive solution.
+         */
+        Node findInOrderSuccessorRecursive(Node node, int key) {
+            if (node == null)
+                return null;
+            if (node.key == key) {
+                if (node.right != null)
+                    return getLeftMost(node.right);
+                else
+                    return null;
+            } else {
+                Node currentNode = findInOrderSuccessorRecursive(key > node.key ? node.right : node.left, key);
+                if (currentNode == null) {
+                    if (node.key > key) {
+                        return node;
+                    } else
+                        return null;
+                } else
+                    return currentNode;
+            }
+        }
+
+        Node findInOrderSuccessorRecursive(int key) {
+            return findInOrderSuccessorRecursive(root, key);
+        }
+
         Node findInOrderSuccessor(Node inputNode) {
             if (inputNode == null)
                 return null;
@@ -136,17 +163,35 @@ public class InorderSuccessor {
         test(tree, 25);
         test(tree, 20);
 
+        System.out.println("============== recursive ================");
+        testeRecursive(tree, 9);
+        testeRecursive(tree, 12);
+        testeRecursive(tree, 14);
+        testeRecursive(tree, 11);
+        testeRecursive(tree, 5);
+        testeRecursive(tree, 25);
+        testeRecursive(tree, 20);
+
+    }
+
+    private static void testeRecursive(BinarySearchTree tree, int key) {
+        Node result = tree.findInOrderSuccessorRecursive(key);
+        print(result, key);
+    }
+
+    private static void print(Node result, int key) {
+        if (result != null) {
+            System.out.println("Inorder successor of " + key + " is " + result.key);
+        } else {
+            System.out.println("Inorder successor of " + key + " does not exist");
+        }
     }
 
     private static void test(BinarySearchTree tree, int key) {
         Node test = null, succ = null;
         test = tree.getNodeByKey(key);
         succ = tree.findInOrderSuccessor(test);
-        if (succ != null) {
-            System.out.println("Inorder successor of " + test.key + " is " + succ.key);
-        } else {
-            System.out.println("Inorder successor of " + test.key + " does not exist");
-        }
+        print(succ, test.key);
     }
 
 }
