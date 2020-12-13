@@ -36,8 +36,33 @@ package codility.lesson09;
  * integer within the range [−10,000..10,000].
  */
 public class MaxDoubleSliceSum {
+
+    /**
+     * Use two arrays:
+     * 
+     * maxEndingAt: max ending at given index.
+     * 
+     * maxStartingAt: max starting at given index.
+     * 
+     */
     public int solution(int[] A) {
+        int size = A.length;
+        int[] maxEndingAt = new int[size];
+        int[] maxStartingAt = new int[size];
+
+        maxEndingAt[0] = 0;
+        for (int i = 1; i < size - 1; i++) {
+            maxEndingAt[i] = Math.max(maxEndingAt[i - 1] + A[i], 0);
+        }
+        maxStartingAt[size - 1] = 0;
+        for (int i = size - 2; i > 0; i--) {
+            maxStartingAt[i] = Math.max(maxStartingAt[i + 1] + A[i], 0);
+        }
+
         int result = 0;
+        for (int i = 1; i < size - 1; i++) {
+            result = Math.max(result, maxEndingAt[i - 1] + maxStartingAt[i + 1]);
+        }
         return result;
     }
 
